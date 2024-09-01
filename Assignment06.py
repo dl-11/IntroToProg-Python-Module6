@@ -20,7 +20,6 @@ MENU: str = '''
 ----------------------------------------- 
 '''
 
-
 # Function to extract the data from the file
 def read_data_from_file(file_name: str, student_data: list):
     try:
@@ -48,9 +47,9 @@ def write_data_to_file(file_name: str, student_data: list):
         json.dump(student_data, file)
         file.close()
         print("The following data was saved to file!")
-        for student in student_data:
-            print(f'Student {student["FirstName"]} '
-                  f'{student["LastName"]} is enrolled in {student["CourseName"]}')
+        for row in student_data:
+            print(f'Student {row["FirstName"]} '
+                  f'{row["LastName"]} is enrolled in {row["CourseName"]}')
     except Exception as e:
         if file.closed == False:
             file.close()
