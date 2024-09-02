@@ -9,6 +9,7 @@ import json
 
 # Define the Data Variables and constants
 FILE_NAME: str = "Enrollments.json"
+menu_choice: str = ""
 students: list = []
 MENU: str = '''
 ---- Course Registration Program ----
@@ -20,18 +21,27 @@ MENU: str = '''
 ----------------------------------------- 
 '''
 
+# Function to handle output error messages
+def output_error_messages(message: str, error: Exception = None):
+    """ This function displays error messages to the user
+      :return: None
+    """
+    print(message, end="\n\n")
+    if error is not None:
+        print("-- Technical Error Message -- ")
+        print(error, error.__doc__, type(error), sep='\n')
+
+
 # Function to extract the data from the file
 def read_data_from_file(file_name: str):
     student_data = []
     try:
         with open(file_name, "r") as file:
             student_data = json.load(file)
+    except FileNotFoundError as e:
+        output_error_messages("Text file must exist before running this script!", e)
     except Exception as e:
-        print("Error: There was a problem with reading the file.")
-        print("Please check that the file exists and that it is in a json format.")
-        print("-- Technical Error Message -- ")
-        print(e.__doc__)
-        print(e.__str__())
+        output_error_messages("There was a non-specific error!", e)
     return student_data
 
 # Function to save the data to a file
@@ -44,11 +54,7 @@ def write_data_to_file(file_name: str, student_data: list):
             print(f'Student {student["FirstName"]} '
                   f'{student["LastName"]} is enrolled in {student["CourseName"]}')
     except Exception as e:
-        print("Error: There was a problem with writing to the file.")
-        print("Please check that the file is not open by another program.")
-        print("-- Technical Error Message -- ")
-        print(e.__doc__)
-        print(e.__str__())
+       output_error_messages("There was a non-specific error!", e)
 
 # Function to output the menu
 def output_menu(menu: str):
@@ -77,22 +83,16 @@ def input_student_data(student_data: list):
                              "CourseName": course_name})
         print(f"You have registered {student_first_name} {student_last_name} for {course_name}.")
     except ValueError as e:
-        print(e)  # Prints the custom message
-        print("-- Technical Error Message -- ")
-        print(e.__doc__)
-        print(e.__str__())
+        output_error_messages("There was a Value error!", e)
     except Exception as e:
-        print("Error: There was a problem with your entered data.")
-        print("-- Technical Error Message -- ")
-        print(e.__doc__)
-        print(e.__str__())
+        output_error_messages("There was a non-specific error!", e)
     return student_data
 
 # Function to present the current data
 def output_student_courses(student_data: list):
     print("-" * 50)
     for item in student_data:
-        print(f"FirstName: {item['FirstName']}, LastName: {item['LastName']} is enrolled in Course: {item['CourseName']}")
+        print(f"{item['FirstName']} {item['LastName']} is enrolled in the course: {item['CourseName']}")
     print("-" * 50)
 
 # Main Body of Script  ---------------------------------------------------- #
