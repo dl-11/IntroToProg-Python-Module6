@@ -24,7 +24,9 @@ MENU: str = '''
 # Function to handle output error messages
 def output_error_messages(message: str, error: Exception = None):
     """ This function displays error messages to the user
-      :return: None
+    Parameter Values:
+    :param message:  message (string): Any text to be included in the error message to the user.
+    :param error: The exception instance containing error details (optional).
     """
     print(message, end="\n\n")
     if error is not None:
@@ -34,6 +36,12 @@ def output_error_messages(message: str, error: Exception = None):
 
 # Function to extract the data from the file
 def read_data_from_file(file_name: str):
+    """
+    Reads student data from a JSON file
+
+    :param file_name: The name of the file to read
+    :return: A list of student data from the file
+    """
     student_data = []
     try:
         with open(file_name, "r") as file:
@@ -46,6 +54,12 @@ def read_data_from_file(file_name: str):
 
 # Function to save the data to a file
 def write_data_to_file(file_name: str, student_data: list):
+    """
+        Writes student data to a JSON file.
+
+        :param file_name: The name of the file to write
+        :param student_data: The list of student data
+        """
     try:
         with open(file_name, "w") as file:
             json.dump(student_data, file)
@@ -53,23 +67,41 @@ def write_data_to_file(file_name: str, student_data: list):
         for student in student_data:
             print(f'Student {student["FirstName"]} '
                   f'{student["LastName"]} is enrolled in {student["CourseName"]}')
+    except TypeError as e:
+        output_error_messages("There was a Type Error!", e)
     except Exception as e:
        output_error_messages("There was a non-specific error!", e)
 
 # Function to output the menu
 def output_menu(menu: str):
+    """
+    Outputs the menu
+
+    :param menu: The menu string to display
+    """
     print()  # Adding extra space to make it look nicer.
     print(menu)
     print()  # Adding extra space to make it look nicer.
 
 # Function to input the menu choice
 def input_menu_choice():
+    """
+    Prompts the user to input a menu choice
+
+    :return: The user's menu choice
+    """
     menu_choice = input("Enter your menu choice number: ")
     print()  # Adding extra space to make it look nicer.
     return menu_choice
 
 # Function to input the student data
 def input_student_data(student_data: list):
+    """
+    Prompts the user to input student data and appends it to the student_data list.
+
+    :param student_data: The list of student data
+    :return: The updated list of student data dictionaries
+    """
     try:
         student_first_name = input("Enter the student's first name: ")
         if not student_first_name.isalpha():
@@ -90,6 +122,11 @@ def input_student_data(student_data: list):
 
 # Function to present the current data
 def output_student_courses(student_data: list):
+    """
+    Outputs the current student data to the user
+
+    :param student_data: The list of student data
+    """
     print("-" * 50)
     for item in student_data:
         print(f"{item['FirstName']} {item['LastName']} is enrolled in the course: {item['CourseName']}")
