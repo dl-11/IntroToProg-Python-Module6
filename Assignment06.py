@@ -24,7 +24,6 @@ MENU: str = '''
 # Function to handle output error messages
 def output_error_messages(message: str, error: Exception = None):
     """ This function displays error messages to the user
-    Parameter Values:
     :param message:  message (string): Any text to be included in the error message to the user.
     :param error: The exception instance containing error details (optional).
     """
@@ -37,7 +36,7 @@ def output_error_messages(message: str, error: Exception = None):
 # Function to extract the data from the file
 def read_data_from_file(file_name: str):
     """
-    Reads student data from a JSON file
+    This function reads student data from a JSON file
 
     :param file_name: The name of the file to read
     :return: A list of student data from the file
@@ -55,7 +54,7 @@ def read_data_from_file(file_name: str):
 # Function to save the data to a file
 def write_data_to_file(file_name: str, student_data: list):
     """
-        Writes student data to a JSON file.
+        This function writes student data to a JSON file.
 
         :param file_name: The name of the file to write
         :param student_data: The list of student data
@@ -75,7 +74,7 @@ def write_data_to_file(file_name: str, student_data: list):
 # Function to output the menu
 def output_menu(menu: str):
     """
-    Outputs the menu
+    This function outputs the menu
 
     :param menu: The menu string to display
     """
@@ -86,7 +85,7 @@ def output_menu(menu: str):
 # Function to input the menu choice
 def input_menu_choice():
     """
-    Prompts the user to input a menu choice
+    This function prompts the user to input a menu choice
 
     :return: The user's menu choice
     """
@@ -97,10 +96,10 @@ def input_menu_choice():
 # Function to input the student data
 def input_student_data(student_data: list):
     """
-    Prompts the user to input student data and appends it to the student_data list.
+    This function prompts the user to input student data and appends it to the student_data list.
 
     :param student_data: The list of student data
-    :return: The updated list of student data dictionaries
+    :return: The updated list of student data
     """
     try:
         student_first_name = input("Enter the student's first name: ")
@@ -123,7 +122,7 @@ def input_student_data(student_data: list):
 # Function to present the current data
 def output_student_courses(student_data: list):
     """
-    Outputs the current student data to the user
+    This function outputs the current student data to the user
 
     :param student_data: The list of student data
     """
