@@ -1,0 +1,17 @@
+[
+  {
+    "FirstName": "John",
+    "LastName": "Doe",
+    "CourseName": "Introduction to Programming"
+  },
+  {
+    "FirstName": "Jane",
+    "LastName": "Smith",
+    "CourseName": "Data Structures and Algorithms"
+  },
+  {
+    "FirstName": "Alice",
+    "LastName": "Johnson",
+    "CourseName": "Web Development"
+  }
+]
